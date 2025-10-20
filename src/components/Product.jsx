@@ -82,11 +82,9 @@ const Product = () => {
             <span style={{ fontSize: "1.2rem", fontWeight: 'lighter' }}>
               {product.category}
             </span>
-            <p className="release-date" style={{ marginBottom: "2rem" }}>
-              
-              <h6>Listed : <span> <i> {new Date(product.releaseDate).toLocaleDateString()}</i></span></h6>
-              {/* <i> {new Date(product.releaseDate).toLocaleDateString()}</i> */}
-            </p>
+            <div className="release-date" style={{ marginBottom: "2rem" }}>
+  <h6>Listed : <span> <i> {new Date(product.releaseDate).toLocaleDateString()}</i></span></h6>
+</div>
             </div>
             
            
