@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import API from '../axios.jsx';
 
 const UpdateProduct = () => {
   const { id } = useParams();
@@ -21,16 +21,16 @@ const UpdateProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8081/api/product/${id}`
+        const response = await API.get(
+        `/product/${id}`
         );
 
         setProduct(response.data);
       
-        const responseImage = await axios.get(
-          `http://localhost:8081/api/product/${id}/image`,
-          { responseType: "blob" }
-        );
+        const responseImage = await API.get(
+       `/product/${id}/image`,
+         { responseType: "blob" }
+          );
        const imageFile = await converUrlToFile(responseImage.data,response.data.imageName)
         setImage(imageFile);     
         setUpdateProduct(response.data);
@@ -66,8 +66,8 @@ const UpdateProduct = () => {
   
 
   console.log("formData : ", updatedProduct)
-    axios
-      .put(`http://localhost:8081/api/product/${id}`, updatedProduct, {
+    API
+      .put(`/product/${id}`, updatedProduct, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

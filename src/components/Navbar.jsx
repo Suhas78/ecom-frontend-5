@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Home from "./Home"
-import axios from "axios";
+import API from '../axios.jsx';
 // import { json } from "react-router-dom";
 // import { BiSunFill, BiMoon } from "react-icons/bi";
 
@@ -22,7 +22,7 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
 
   const fetchData = async (value) => {
     try {
-      const response = await axios.get("http://localhost:8081/api/products");
+      const response = await API.get("/products");
       setSearchResults(response.data);
       console.log(response.data);
     } catch (error) {
@@ -35,8 +35,8 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
     if (value.length >= 1) {
       setShowSearchResults(true)
     try {
-      const response = await axios.get(
-        `http://localhost:8081/api/products/search?keyword=${value}`
+      const response = await API.  get(
+      `/products/search?keyword=${value}`
       );
       setSearchResults(response.data);
       setNoResults(response.data.length === 0);

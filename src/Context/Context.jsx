@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext } from "react";
-import axios from "../axios";
+import API from "../axios.jsx";
 
 const AppContext = createContext();
 
@@ -10,7 +10,7 @@ export const AppProvider = ({ children }) => {
 
     const refreshData = async () => {
         try {
-            const response = await axios.get("/products");
+            const response = await API.get("/products");
             setData(response.data);
             setIsError("");
         } catch (error) {
@@ -27,7 +27,7 @@ export const AppProvider = ({ children }) => {
         }
         try {
             // Call the specific backend endpoint for categories
-            const response = await axios.get(`/products/category/${category}`);
+            const response = await API.get(`/products/category/${category}`);
             setData(response.data);
             setIsError("");
         } catch (error) {
